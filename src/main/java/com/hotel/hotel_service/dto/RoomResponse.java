@@ -12,6 +12,5 @@ public class RoomResponse {
   private Integer capacity;
   private Double pricePerNight;
   private Boolean available;
-  private String hotelName;
 
 }
