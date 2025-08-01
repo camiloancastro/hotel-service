@@ -2,7 +2,6 @@ package com.hotel.hotel_service.service.room;
 
 import com.hotel.hotel_service.dto.RoomRequest;
 import com.hotel.hotel_service.dto.RoomResponse;
-import com.hotel.hotel_service.repository.HotelRepository;
 import com.hotel.hotel_service.repository.RoomRepository;
 import com.hotel.hotel_service.util.mapper.HotelMapper;
 import java.util.UUID;
@@ -20,12 +19,17 @@ public class RoomServiceImpl implements RoomService {
 
   @Override
   public RoomResponse create(RoomRequest request) {
-    return null;
+    var room = hotelMapper.toRoom(request);
+    var savedRoom = roomRepository.save(room);
+    return hotelMapper.toRoomResponse(savedRoom);
   }
 
   @Override
   public RoomResponse update(UUID id, RoomRequest request) {
-    return null;
+    var existingRoom = roomRepository.getRoomById(id);
+    hotelMapper.updateRoomFromRequest(request, existingRoom);
+    var updatedRoom = roomRepository.save(existingRoom);
+    return hotelMapper.toRoomResponse(updatedRoom);
   }
 
   @Override

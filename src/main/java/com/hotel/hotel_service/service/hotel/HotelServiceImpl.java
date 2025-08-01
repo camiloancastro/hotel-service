@@ -19,12 +19,17 @@ public class HotelServiceImpl implements HotelService{
 
   @Override
   public HotelResponse create(HotelRequest request) {
-    return null;
+    var hotel = hotelMapper.toHotel(request);
+    var savedHotel = hotelRepository.save(hotel);
+    return hotelMapper.toHotelResponse(savedHotel);
   }
 
   @Override
   public HotelResponse update(UUID id, HotelRequest request) {
-    return null;
+    var existingHotel = hotelRepository.getHotelById(id);
+    hotelMapper.updateHotelFromRequest(request, existingHotel);
+    var updatedHotel = hotelRepository.save(existingHotel);
+    return hotelMapper.toHotelResponse(updatedHotel);
   }
 
   @Override
