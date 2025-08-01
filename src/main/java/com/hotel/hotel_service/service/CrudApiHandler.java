@@ -2,6 +2,7 @@ package com.hotel.hotel_service.service;
 
 import java.util.UUID;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Generic interface for CRUD operations.
@@ -19,6 +20,6 @@ public interface CrudApiHandler <R, T>{
 
     void deleteById(UUID id);
 
-    Page<T> getAll();
+    Page<T> getAll(Pageable pageable);
 
 }
