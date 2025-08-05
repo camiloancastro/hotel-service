@@ -30,4 +30,9 @@ public class Hotel {
   @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
   private List<Room> rooms = new ArrayList<>();
 
+  public void addRoom(Room room) {
+    rooms.add(room);
+    room.setHotel(this);
+  }
+
 }

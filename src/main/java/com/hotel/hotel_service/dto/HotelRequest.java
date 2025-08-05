@@ -1,5 +1,6 @@
 package com.hotel.hotel_service.dto;
 
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +14,6 @@ public class HotelRequest {
   private String country;
   private boolean enabled;
 
-  private RoomRequest roomRequest;
-
+  private List<RoomRequest> roomRequest;
 
 }
