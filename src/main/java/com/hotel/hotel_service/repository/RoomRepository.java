@@ -2,6 +2,7 @@ package com.hotel.hotel_service.repository;
 
 import com.hotel.hotel_service.entity.Room;
 import jakarta.transaction.Transactional;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -17,5 +18,8 @@ public interface RoomRepository extends JpaRepository<Room,Integer> {
     @Modifying
     @Query("DELETE FROM Room r WHERE r.id = ?1")
     void deleteByRoomId(UUID id);
+
+    @Query("SELECT r FROM Room r WHERE r.hotel.id = ?1")
+    List<Room> findRoomsByHotelId(UUID hotelId);
 
 }
